@@ -1,0 +1,34 @@
+# Dependencias
+node_modules/
+jspm_packages/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variables de entorno (¡Muy importante para la seguridad!)
+.env
+.env.test
+.env.production
+
+# Archivos de VS Code
+.vscode/
+*.code-workspace
+
+# Cache y archivos temporales
+.eslintcache
+.npm
+.cache/
+
+# Archivos de Sistema (macOS y Windows)
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+#////OTROS
+.eslintcache
+.stylelintcache
+package-lock.json
