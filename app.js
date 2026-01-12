@@ -7,6 +7,14 @@ const app = express();
 //3. Definir un puerto sobre el cual funciona nuestra app
 const PORT = 3000;
 
+//------Configuración-------
+//Establecer EJS como motor de plantillas 
+app.set('view engine', 'ejs')
+
+//Establecer la carpeta pública con elementos estátios 
+app.use(express.static('public'));
+
+
 //4. Crear la primera "ruta" cuando el usuario ingrese a la raiz de nuestra app 
 app.get ('/', (req, res) =>{
     res.send('<h1>Servidor de E-commerce Iniciado </h1><p>NPM y Express funcionando...!<p/>')
