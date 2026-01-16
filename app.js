@@ -1,27 +1,45 @@
-//1. importar la libreria para crear aplicaciones web 
-const express = require ('express');
+// 1. Importar la librería para crear aplicaciones Web
+const express = require('express');
 
-//2. Crear una instancia de express (aplicacion principal)
+// 2. Crear una instacia de express (aplicación principal)
 const app = express();
 
-//3. Definir un puerto sobre el cual funciona nuestra app
+// 3. Definir un puerto sobre el cual funciona nuestra app
 const PORT = 3000;
 
-//------Configuración-------
-//Establecer EJS como motor de plantillas 
-app.set('view engine', 'ejs')
+// --- CONFIGURACIÓN ---
+// Establecer EJS como motor de vistas
+app.set('view engine', 'ejs');
 
-//Establecer la carpeta pública con elementos estátios 
+// Establecer la carpeta publica con elementos estáticos
 app.use(express.static('public'));
 
+// -- RUTAS --
+app.get('/', (req, res) => {
+    // Simular una lista de productos
+    const listaProductos = [
+        {
+            nombre: "Laptop Pro",
+            precio: 850,
+            imagen: "https://dummyimage.com/200x200/000/fff&text=Laptop"
+        },
+        {
+            nombre: "Audifonos Sony",
+            precio: 125,
+            imagen: "https://dummyimage.com/200x200/000/fff&text=Audifonos"
+        },
+        {
+            nombre: "Mouse ergonómico",
+            precio: 50,
+            imagen: "https://dummyimage.com/200x200/000/fff&text=Mouse"
+        }
+    ];
+    // Renderizar la plantilla con los datos proporcionados
+    res.render('index', {productos: listaProductos}); 
+});
 
-//4. Crear la primera "ruta" cuando el usuario ingrese a la raiz de nuestra app 
-app.get ('/', (req, res) =>{
-    res.send('<h1>Servidor de E-commerce Iniciado </h1><p>NPM y Express funcionando...!<p/>')
-})
-
-//5. Encender el servidor 
-app.listen(PORT, ()=> {
-    console.log (`>>> Servidor corriendo en http://localhost:${PORT}`);
+// 5. Encender el servidor
+app.listen(PORT, () =>{
+    console.log(`>>> Servidor corriendo en http://localhost:${PORT}`);
     console.log(`>>> Presione Ctrl + c para detener`);
 });
