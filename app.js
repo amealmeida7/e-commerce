@@ -3,13 +3,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 // Importar modelo Producto
-const Producto = require('./models/Producto');
-
+const Producto = require('./models/producto');
 
 // 2. Crear instancia de Express
 const app = express();
 
-// 3. Puerto
+// 3. Puertorun
 const PORT = 3000;
 
 // --- CONFIGURACIÓN ---
@@ -61,4 +60,46 @@ app.get('/categoria/:nombreCategoria', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`>>> Servidor corriendo en http://localhost:${PORT}`);
     console.log('>>> Presione Ctrl + C para detener');
+});
+
+//6. Detalle del producto
+app.get('/producto/:id', async (req, res) => {
+    try {
+        const producto = await Producto.findById(req.params.id);
+
+        res.render('detalle', {
+            producto
+        });
+    } catch (error) {
+        res.status(404).send('Producto no encontrado');
+    }
+});
+
+//7. Formulario nuevo producto 
+app.get('/admin/productos/nuevo', (req, res) => {
+    res.render('form-producto', { producto: {} });
+});
+
+//8. Guardar producto
+app.post('/admin/productos', async (req, res) => {
+    await Producto.create(req.body);
+    res.redirect('/');
+});
+
+//9. Editar producto
+app.get('/admin/productos/editar/:id', async (req, res) => {
+    const producto = await Producto.findById(req.params.id);
+    res.render('form-producto', { producto });
+});
+
+//10.- Actualizar producto
+app.post('/admin/productos/editar/:id', async (req, res) => {
+    await Producto.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect('/');
+});
+
+//11. Eliminar producto
+app.post('/admin/productos/eliminar/:id', async (req, res) => {
+    await Producto.findByIdAndDelete(req.params.id);
+    res.redirect('/');
 });
