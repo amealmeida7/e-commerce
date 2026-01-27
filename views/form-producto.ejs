@@ -2,107 +2,41 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= producto._id ? 'Editar Producto' : 'Nuevo Producto' %> | TechStore
-    </title>
-
-    <!-- Bootstrap -->
+    <title>Producto | TechStore</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .navbar-brand {
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        footer {
-            margin-top: 60px;
-            padding: 20px 0;
-            background-color: #212529;
-            color: #fff;
-        }
-    </style>
 </head>
 
 <body class="bg-light">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="/">🚀 TechStore</a>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="/">🚀 TechStore</a>
+    </div>
+</nav>
 
-    <!-- Contenido -->
-    <div class="container mt-5">
-        <div class="card shadow-sm border-0">
-            <div class="card-body">
-                <h3 class="mb-4 fw-bold text-center">
-                    <%= producto._id ? 'Editar Producto' : 'Nuevo Producto' %>
-                </h3>
+<div class="container mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <h3 class="text-center fw-bold mb-4">
+                <%= producto._id ? 'Editar Producto' : 'Nuevo Producto' %>
+            </h3>
 
-                <form method="POST" 
-                      action="<%= producto._id ? '/admin/productos/editar/' + producto._id : '/admin/productos' %>">
+            <form method="POST" action="<%= producto._id ? '/admin/productos/editar/' + producto._id : '/admin/productos' %>">
+                <input type="text" name="nombre" value="<%= producto.nombre || '' %>" class="form-control mb-3" placeholder="Nombre" required>
+                <input type="number" name="precio" value="<%= producto.precio || '' %>" class="form-control mb-3" placeholder="Precio" required>
+                <input type="text" name="categoria" value="<%= producto.categoria || '' %>" class="form-control mb-3" placeholder="Categoría" required>
+                <textarea name="descripcion" class="form-control mb-3" placeholder="Descripción" required><%= producto.descripcion || '' %></textarea>
+                <input type="text" name="imagen" value="<%= producto.imagen || '' %>" class="form-control mb-4" placeholder="URL Imagen">
 
-                    <div class="mb-3">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control"
-                               name="nombre"
-                               value="<%= producto.nombre || '' %>" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Precio</label>
-                        <input type="number" class="form-control"
-                               name="precio"
-                               value="<%= producto.precio || '' %>" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Categoría</label>
-                        <input type="text" class="form-control"
-                               name="categoria"
-                               value="<%= producto.categoria || '' %>" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Descripción</label>
-                        <textarea class="form-control"
-                                  name="descripcion"
-                                  rows="4"
-                                  required><%= producto.descripcion || '' %></textarea>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label">URL Imagen</label>
-                        <input type="text" class="form-control"
-                               name="imagen"
-                               value="<%= producto.imagen || '' %>">
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <a href="/" class="btn btn-outline-secondary">
-                            Cancelar
-                        </a>
-
-                        <button type="submit" class="btn btn-success">
-                            Guardar
-                        </button>
-                    </div>
-                </form>
-            </div>
+                <div class="d-flex justify-content-between">
+                    <a href="/" class="btn btn-outline-dark">Cancelar</a>
+                    <button class="btn btn-primary fw-semibold">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="container">
-            <p class="mb-0">© 2026 TechStore — Todos los derechos reservados</p>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

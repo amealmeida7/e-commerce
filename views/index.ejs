@@ -14,6 +14,11 @@
             letter-spacing: 1px;
         }
 
+        /* 🔴 NAVBAR ROJA PERSONALIZADA */
+        .navbar-tech {
+            background-color: #b30000;
+        }
+
         .card {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             border: none;
@@ -47,8 +52,8 @@
 
 <body class="bg-light">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <!-- 🔴 NAVBAR ROJA -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-tech shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="/">🚀 TechStore</a>
 
@@ -59,13 +64,13 @@
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/categoria/computadores">Computadores</a>
+                        <a class="nav-link text-white" href="/categoria/computadores">Computadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/categoria/perifericos">Periféricos</a>
+                        <a class="nav-link text-white" href="/categoria/perifericos">Periféricos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-success ms-3" href="/admin/productos/nuevo">
+                        <a class="btn btn-light text-danger fw-bold ms-3" href="/admin/productos/nuevo">
                             + Agregar producto
                         </a>
                     </li>
@@ -74,7 +79,7 @@
         </div>
     </nav>
 
-    <!-- Contenido -->
+    <!-- CONTENIDO -->
     <div class="container mt-5">
         <h1 class="text-center mb-5 fw-bold"><%= titulo %></h1>
 
@@ -95,22 +100,20 @@
                                 $<%= item.precio %>
                             </p>
 
-                            <!-- Botones -->
                             <div class="mt-auto">
                                 <a href="/producto/<%= item._id %>" 
-                                   class="btn btn-outline-primary w-100 mb-2">
+                                   class="btn btn-dark text-white w-100 mb-2">
                                     Ver detalle
                                 </a>
 
                                 <a href="/admin/productos/editar/<%= item._id %>" 
-                                   class="btn btn-warning w-100 mb-2">
+                                   class="btn btn-primary text-white w-100 mb-2">
                                     Editar
                                 </a>
 
-                                <form action="/admin/productos/eliminar/<%= item._id %>" 
-                                      method="POST">
+                                <form action="/admin/productos/eliminar/<%= item._id %>" method="POST">
                                     <button type="submit" 
-                                            class="btn btn-danger w-100"
+                                            class="btn btn-outline-danger fw-bold w-100"
                                             onclick="return confirm('¿Eliminar este producto?')">
                                         Eliminar
                                     </button>
@@ -123,7 +126,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="text-center">
         <div class="container">
             <p class="mb-0">© 2026 TechStore — Todos los derechos reservados</p>

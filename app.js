@@ -82,9 +82,20 @@ app.get('/admin/productos/nuevo', (req, res) => {
 
 //8. Guardar producto
 app.post('/admin/productos', async (req, res) => {
-    await Producto.create(req.body);
-    res.redirect('/');
+    try {
+        console.log('📦 Datos recibidos del formulario:');
+        console.log(req.body);   // 👈 AQUÍ VEMOS LOS CAMPOS
+
+        await Producto.create(req.body);
+
+        console.log('✅ Producto guardado correctamente');
+        res.redirect('/');
+    } catch (error) {
+        console.log('❌ Error al guardar:', error.message);
+        res.status(500).send('Error al guardar producto');
+    }
 });
+
 
 //9. Editar producto
 app.get('/admin/productos/editar/:id', async (req, res) => {
